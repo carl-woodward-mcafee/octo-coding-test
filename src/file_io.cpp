@@ -12,7 +12,7 @@ std::tuple<uint32_t, void*> create_file(
     uint32_t flags) noexcept
 {
     auto handle{
-        CreateFile(path.data(), desired_access, share_mode, NULL, create_disposition, 0, NULL)};
+        CreateFileW(path.data(), desired_access, share_mode, NULL, create_disposition, 0, NULL)};
     auto success{handle == INVALID_HANDLE_VALUE};
     return {success ? ERROR_SUCCESS : GetLastError(), handle};
 }
@@ -52,7 +52,7 @@ uint32_t close_handle(void* handle) noexcept
 
 uint32_t delete_file(std::wstring_view const& path) noexcept
 {
-    auto result = DeleteFile(path.data());
+    auto result = DeleteFileW(path.data());
     return result ? ERROR_SUCCESS : GetLastError();
 }
 

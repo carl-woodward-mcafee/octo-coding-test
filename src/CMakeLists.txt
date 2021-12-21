@@ -17,8 +17,8 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Build with C++ 17.
-add_executable(sdet-coding-test main.cpp file_io_tests.cpp)
+# Build with C++ 20.
+add_executable(sdet-coding-test main.cpp file_io.cpp file_io_tests.cpp)
 target_include_directories(sdet-coding-test PUBLIC 
     ../include 
     ../submodules/google-googletest/googletest/include
