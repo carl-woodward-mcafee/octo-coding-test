@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sdet-coding-test", "src\sdet-coding-test.vcxproj", "{111F7574-25FF-4BE9-93C5-FD071636B04F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDET Coding Test", "sdet\sdet_coding_test_vcxproj", "{111F7574-25FF-4BE9-93C5-FD071636B04F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
