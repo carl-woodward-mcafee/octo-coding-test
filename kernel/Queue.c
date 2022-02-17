@@ -25,7 +25,7 @@ Environment:
 static PEPROCESS target_process_;
 
 // The list head for tracking requests.
-static LIST_ENTRY tracking_list_head_{};
+static LIST_ENTRY tracking_list_head_;
 
 NTSTATUS
 KmtQueueInitialize(_In_ WDFDEVICE Device)

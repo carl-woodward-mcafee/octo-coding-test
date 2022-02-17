@@ -1,4 +1,4 @@
-# SDET Test
+# McAfee OCTO Kernel Test
 The goal of the driver is receive and process file tracking requests. The IOCTL asks that a file be opened and information about the file be put onto a linked list [tracking_list_head_](Queue.c). This information will be used later by the driver. The request is described in the `TRACK_FILE` structure in [Public.h](Public.h).
 
 The request is received via an [IOCTL](https://docs.microsoft.com/en-us/windows/win32/devio/device-input-and-output-control-ioctl-) code.

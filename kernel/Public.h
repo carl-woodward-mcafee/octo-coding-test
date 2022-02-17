@@ -45,4 +45,4 @@ typedef struct _TRACK_FILE
     PWSTR FilePath;             // Points to the full file path.
     PWSTR FileName;             // Points the file name.
     PWSTR DirectoryAndFileName; // Points to the directory + filename.
-} TRACK_FILE, *TRACK_FILE;
+} TRACK_FILE, *PTRACK_FILE;

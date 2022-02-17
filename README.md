@@ -1,4 +1,4 @@
-# McAfee MFESEC SDET Coding Test
+# McAfee OCTO Coding Test
 This repository provides OCTO coding tests for SDET and Kernel engineers.
 
 ## Requirements
