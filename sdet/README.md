@@ -9,3 +9,11 @@ The goal of the exercise to stress test `mcafee::file_io::create_file` api in [f
 We would like you to write unit tests that will stress the api `mcafee::file_io::create_file` and show that it is currently unsafe and/or verify that the API behaves like `kernelbase!CreateFileW`.
 
 There is no definitive answer for this coding test. The candidate must write unit tests that validate the file can be opened correctly and determine that expected errors are returned by the API. Examples of areas that need formal testing include path format and share flags.
+
+## Extended Task and Expectations
+This is an advanced exercise, only do this test if you have been asked to by McAfee or your recruiter.
+
+The goal of this exercise is to determine that data written to disk can be read back correctly. Add unit tests to [file_io_tests.cpp](sdet/file_io_tests.cpp) such that:
+
+* Structed data (i.e. documents) and random/compressed/encrypted data can be read back correctly. To simplify this test, focus on writing and reading back cryptographically random data or random sizes.
+* The test should stress the OS and file system filter drivers by running tests concurrently. 
