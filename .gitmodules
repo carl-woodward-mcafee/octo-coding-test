@@ -3,4 +3,4 @@
 	url = https://github.com/google/googletest
 [submodule "submodules/wil"]
 	path = submodules/wil
-	url = ../../microsoft/wil
+	url = https://github.com/microsoft/wil
