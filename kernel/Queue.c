@@ -121,7 +121,7 @@ Return Value:
 
     //
     // McAfee Code Test Candidate. This is the function you must edit. You do not need to run or
-    // test this code but it must compile before submission.
+    // test this code but it must compile before submission. Please see README.md for details.
     //
 
     WdfRequestComplete(Request, STATUS_SUCCESS);

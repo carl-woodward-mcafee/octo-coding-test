@@ -21,5 +21,6 @@ Please use Visual Studio 2019 or later and double click on the solution file [oc
 There are a number of tests in this repository, only do the test that you have been asked to perform.
 1. [Software Development Engineer in Test](sdet/README.md)
 1. [Kernel Engineer](kernel/README.md)
+1. [User Engineer](user/README.md)
 
 Good luck with the test!
