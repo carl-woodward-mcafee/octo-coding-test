@@ -136,7 +136,7 @@ Return Value:
 
     switch (IoControlCode)
     {
-    case IOCTL_DEVICE_TRACK_FILE: 
+        case IOCTL_DEVICE_TRACK_FILE: 
             TraceEvents(TRACE_LEVEL_VERBOSE, TRACE_DRIVER,
                 "Called IOCTL_METHOD_TRACK_FILE\n");
             break;
