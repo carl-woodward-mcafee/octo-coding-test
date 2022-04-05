@@ -27,7 +27,7 @@ Environment:
 // The IOCTL function codes from 0x800 to 0xFFF are for customer use.
 //
 
-#define IOCTL_DEVICE_TRACK_FILE                                                              \
+#define IOCTL_DEVICE_TRACK_FILE_NEITHER                                                              \
     CTL_CODE(FILEIO_TYPE, 0x800, METHOD_NEITHER, FILE_ANY_ACCESS)
 
 DEFINE_GUID(
