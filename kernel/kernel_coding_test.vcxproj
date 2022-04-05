@@ -205,6 +205,8 @@
       <WppScanConfigurationData Condition="'%(ClCompile.ScanConfigurationData)' == ''">trace.h</WppScanConfigurationData>
       <WppKernelMode>true</WppKernelMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <WppTraceFunction>
+      </WppTraceFunction>
     </ClCompile>
     <DriverSign>
       <FileDigestAlgorithm>sha256</FileDigestAlgorithm>

@@ -15,7 +15,6 @@ Environment:
 --*/
 
 #include "driver.h"
-#include "device.tmh"
 
 #ifdef ALLOC_PRAGMA
 #pragma alloc_text (PAGE, KmtCreateDevice)
@@ -77,7 +76,7 @@ Return Value:
         //
         status = WdfDeviceCreateDeviceInterface(
             device,
-            &GUID_DEVINTERFACE_Kmt,
+            &GUID_DEVINTERFACE_KMT_TRACK_FILE,
             NULL // ReferenceString
             );
 

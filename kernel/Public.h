@@ -19,8 +19,19 @@ Environment:
 // Define an Interface Guid so that apps can find the device and talk to it.
 //
 
+//
+// Device type           -- in the "User Defined" range."
+//
+#define FILEIO_TYPE 40001
+//
+// The IOCTL function codes from 0x800 to 0xFFF are for customer use.
+//
+
+#define IOCTL_DEVICE_TRACK_FILE                                                              \
+    CTL_CODE(FILEIO_TYPE, 0x800, METHOD_NEITHER, FILE_ANY_ACCESS)
+
 DEFINE_GUID(
-    GUID_DEVINTERFACE_Kmt,
+    GUID_DEVINTERFACE_KMT_TRACK_FILE,
     0x79241679,
     0x85eb,
     0x43e4,

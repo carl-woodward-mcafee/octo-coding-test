@@ -14,6 +14,7 @@ Environment:
 
 --*/
 
+#include "Trace.h"
 #include "driver.h"
 #include "queue.tmh"
 
@@ -123,6 +124,25 @@ Return Value:
     // McAfee Code Test Candidate. This is the function you must edit. You do not need to run or
     // test this code but it must compile before submission. Please see README.md for details.
     //
+
+    // Define their own IOCTL code in (Public.h)[Public.h]
+    // 
+    // Verify the TRACK_FILE structure is valid and safe to use. Please note that this structure is always passed with NEITHER_IO.
+    // Define your own linked list data structure and algorithms for each NOTE: you must not use LIST_ENTRY.
+    // Add the TRACK_FILE request to the linked list track_file_list_head_ in a thread safe manner.
+    // In a worker thread thread open the file provided in the TRACK_FILE structure and remove the item from the list in a thread safe manner.
+    // Release allocated resources.
+    // Please note that the linked list code has not yet been written, please use LIST_ENTRY or write your own. Also, do note that the linked list may be accessed by code running a DISPATCH_LEVEL/DPC_LEVEL.
+
+    switch (IoControlCode)
+    {
+    case IOCTL_DEVICE_TRACK_FILE: 
+            TraceEvents(TRACE_LEVEL_VERBOSE, TRACE_DRIVER,
+                "Called IOCTL_METHOD_TRACK_FILE\n");
+            break;
+
+    }
+
 
     WdfRequestComplete(Request, STATUS_SUCCESS);
 
