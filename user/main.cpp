@@ -1,9 +1,5 @@
 #include "notifications.h"
 
-#include "wil/resource.h"
-
-#include <Windows.h>
-
 bool notify_callback(std::wstring const& path, uint32_t pid)
 {
     //
@@ -18,25 +14,15 @@ int main(int argc, char** argv)
 {
     printf("starting\n");
 
-    wil::unique_handle stop_event{CreateEvent(NULL, FALSE, FALSE, NULL)};
-    if (!stop_event.get())
-    {
-        printf("failed to create stop event\n");
-        return 1;
-    }
-
-    if (!register_for_fs_notifications(notify_callback, stop_event.get()))
+    std::mutex mutex{};
+    std::unique_lock<std::mutex> lock{mutex};
+    std::condition_variable cv{};
+    if (!register_for_fs_notifications(notify_callback, cv, mutex))
     {
         printf("register_for_fs_notifications failed\n");
         return 2;
     }
-
-    auto wait_result = WaitForSingleObject(stop_event.get(), INFINITE);
-    if (wait_result == WAIT_FAILED)
-    {
-        printf("WaitForSingleObject failed\n");
-        return 3;
-    }
+    cv.wait(lock);  
 
     printf("succeeded\n");
     return 0;
