@@ -14,8 +14,13 @@ Environment:
 
 --*/
 
+#include "Trace.h"
 #include "driver.h"
 #include "queue.tmh"
+
+#if defined(EVENT_TRACING)
+#include "ioctl.tmh"
+#endif
 
 #ifdef ALLOC_PRAGMA
 #pragma alloc_text(PAGE, KmtQueueInitialize)
@@ -108,6 +113,11 @@ Return Value:
 
 --*/
 {
+    PREQUEST_CONTEXT reqContext = NULL;
+    PCHAR inBuf = NULL, outBuf = NULL; // pointer to Input and output buffer
+    PCHAR data = "this String is from Device Driver !!!";
+    ULONG datalen = (ULONG)strlen(data) + 1; // Length of data including null
+
     TraceEvents(
         TRACE_LEVEL_INFORMATION,
         TRACE_QUEUE,
@@ -123,6 +133,78 @@ Return Value:
     // McAfee Code Test Candidate. This is the function you must edit. You do not need to run or
     // test this code but it must compile before submission. Please see README.md for details.
     //
+
+    // Define their own IOCTL code in (Public.h)[Public.h]
+    // 
+    // Verify the TRACK_FILE structure is valid and safe to use. Please note that this structure is always passed with NEITHER_IO.
+    // Define your own linked list data structure and algorithms for each NOTE: you must not use LIST_ENTRY.
+    // Add the TRACK_FILE request to the linked list track_file_list_head_ in a thread safe manner.
+    // In a worker thread thread open the file provided in the TRACK_FILE structure and remove the item from the list in a thread safe manner.
+    // Release allocated resources.
+    // Please note that the linked list code has not yet been written, please use LIST_ENTRY or write your own. Also, do note that the linked list may be accessed by code running a DISPATCH_LEVEL/DPC_LEVEL.
+    
+    size_t inBufLength, outBufLength;
+    NTSTATUS status;
+    CUSTOM_LIST_ENTRY TRACK_FILE_LIST;
+    switch (IoControlCode)
+    {
+        case IOCTL_DEVICE_TRACK_FILE_NEITHER: 
+            // https://github.com/MicrosoftDocs/windows-driver-docs/blob/staging/windows-driver-docs-pr/wdf/accessing-data-buffers-in-wdf-drivers.md#neither
+            // Accessing Data Buffers for Neither Buffered Nor Direct I/O
+            TraceEvents(TRACE_LEVEL_VERBOSE, DBG_IOCTL,
+                "Called IOCTL_METHOD_TRACK_FILE_NEITHER\n");
+            DbgPrint("Example_IoControl Called \r\n");
+
+ 
+            reqContext = GetRequestContext(Request);
+
+            inBuf = WdfMemoryGetBuffer(reqContext->InputMemoryBuffer, &inBufLength);
+            outBuf = WdfMemoryGetBuffer(reqContext->OutputMemoryBuffer, &outBufLength);
+
+            if (inBuf == NULL || outBuf == NULL)
+            {
+                status = STATUS_INVALID_PARAMETER;
+            }
+
+            ASSERT(inBufLength == InputBufferLength);
+            ASSERT(outBufLength == OutputBufferLength);
+
+            //
+            // Now you can safely read the data from the buffer in any arbitrary
+            // context.
+            //
+            Hexdump(
+                (TRACE_LEVEL_VERBOSE,
+                 DBG_IOCTL,
+                 "Data from User : %!HEXDUMP!\n",
+                 log_xstr(inBuf, (USHORT)inBufLength)));
+            PrintChars(inBuf, inBufLength);
+
+            //
+            // Write to the buffer in any arbitrary context.
+            //
+            RtlCopyMemory(outBuf, data, outBufLength);
+
+            Hexdump(
+                (TRACE_LEVEL_VERBOSE,
+                 DBG_IOCTL,
+                 "Data to User : %!HEXDUMP!\n",
+                 log_xstr(outBuf, (USHORT)datalen)));
+            PrintChars(outBuf, datalen);
+            
+            // Implement Linked List
+            //https: // www.osronline.com/article.cfm%5Earticle=499.htm
+
+            //
+            // Assign the length of the data copied to IoStatus.Information
+            // of the Irp and complete the Irp.
+            //
+            WdfRequestSetInformation(Request, outBufLength < datalen ? outBufLength : datalen);
+
+            break;
+
+    }
+
 
     WdfRequestComplete(Request, STATUS_SUCCESS);
 
