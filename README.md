@@ -1,5 +1,8 @@
 # McAfee OCTO Coding Test
-This repository provides OCTO coding tests for SDET and Kernel engineers.
+This repository provides OCTO coding tests for SDET and Kernel engineers. To successfully complete this test you must:
+1. Make changes to the test you have been asked to complete (SDET, Kernel, or User). You must write in C++, no other languages are accepted.
+1. Verify that your changes compile. We will not run your code changes, but they must compile.
+1. We do not process pull requests. Instead, delete build files (.\.vs, .\build, .\build.intermediate) and create an zip or 7z archive for the entire repository and e-mail the file to your recrutier.
 
 ## Requirements
 To complete these coding tests candidates must be familiar with C++, Windows APIs, and [googletest](https://github.com/google/googletest). Tests must be executable on Windows 10 and Windows 11.
