@@ -1,6 +1,8 @@
 # McAfee OCTO SDET Test
 The goal of this coding test is to write a unit test that will stress a critical API 'mcafee::file_io::create_file' that opens a file using an interface similar to [kernelbase!CreateFileW](https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew) but removes some of the Less commonly used parameters and makes the interface pure C++ (it does not make use of windows headers directly).
 
+The code need only compile, we will not be running the tests.
+
 Candidates should spend no more than 2 hours on this test and list any test cases that could not be convered in comments in the source file. The candidate can create as many unit test cases as they deem necessary to meet the challenge. The number of tests produced by the candidate is less important than rigor and correctness of the unit tests.
 
 ## Task and Expectations
